@@ -1,0 +1,40 @@
+{
+	"name": "@eventengineering/vite-bonjour-advertise",
+	"version": "1.0.0",
+	"description": "A ",
+	"main": "index.js",
+	"type": "module",
+	"dependencies": {
+		"@eventengineer/bonjour": "^4.0.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Event-Engineering/Vite-Bonjour-Advertise.git"
+	},
+	"keywords": [
+		"vite",
+		"http",
+		"server",
+		"bonjour",
+		"zeroconf",
+		"zero",
+		"configuration",
+		"mdns",
+		"dns",
+		"service",
+		"discovery",
+		"multicast",
+		"broadcast",
+		"dns-sd"
+	],
+	"author": "Event Engineering Ltd",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Event-Engineering/Vite-Bonjour-Advertise/issues"
+	},
+	"homepage": "https://github.com/Event-Engineering/Vite-Bonjour-Advertise",
+	"directories": {
+		"lib": "lib",
+		"test": "test"
+	}
+}
