@@ -55,7 +55,7 @@ class AdvertiseServer {
 	}
 }
 
-export default let ViteAdvertiseServer = (...args) => {
+export default (...args) => {
 	let obj = new AdvertiseServer(...args);
 
 	return Object.fromEntries(
