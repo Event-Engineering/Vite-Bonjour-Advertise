@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"type": "module",
 	"dependencies": {
-		"@eventengineer/bonjour": "^4.0.0"
+		"@eventengineering/bonjour": "^4.0.0"
 	},
 	"repository": {
 		"type": "git",
@@ -32,9 +32,5 @@
 	"bugs": {
 		"url": "https://github.com/Event-Engineering/Vite-Bonjour-Advertise/issues"
 	},
-	"homepage": "https://github.com/Event-Engineering/Vite-Bonjour-Advertise",
-	"directories": {
-		"lib": "lib",
-		"test": "test"
-	}
+	"homepage": "https://github.com/Event-Engineering/Vite-Bonjour-Advertise"
 }
