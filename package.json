@@ -1,11 +1,12 @@
 {
 	"name": "@eventengineering/vite-bonjour-advertise",
-	"version": "1.0.0",
-	"description": "A ",
+	"version": "1.0.1",
+	"description": "Advertises the Vite server over Bonjour when host enabled",
 	"main": "index.js",
 	"type": "module",
 	"dependencies": {
-		"@eventengineering/bonjour": "^4.0.0"
+		"@eventengineering/bonjour": "^4.0.0",
+		"eslint": "^8.56.0"
 	},
 	"repository": {
 		"type": "git",
