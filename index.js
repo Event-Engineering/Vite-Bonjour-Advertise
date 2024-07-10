@@ -46,11 +46,15 @@ class AdvertiseServer {
 			this.#addressSets.push(addressSet);
 
 			this.types.forEach((type) => {
-				console.debug('Advertising', {name: this.bonjourName, type, port});
+				setTimeout(() => {
+					this.#server.config.logger.info('Advertising', {name: this.bonjourName, type, port});
+				});
 				this.#bonjour.publish({name: this.bonjourName, type, port});
 			});
 		} else {
-			console.debug('Ignoring', {family, address, port});
+			setTimeout(() => {
+				this.#server.config.logger.warn('Ignoring', {family, address, port});
+			});
 		}
 	}
 }
