@@ -13,7 +13,7 @@ npm install @eventengineering/vite-bonjour-advertise
 ```js
 import ViteBonjourAdvertise from '@eventengineering/vite-bonjour-advertise';
 
-export default defineConfig(({mode}) => ({
+export default defineConfig(() => ({
 	...
 	plugins: [
 		...
