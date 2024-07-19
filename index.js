@@ -9,7 +9,7 @@ class AdvertiseServer {
 	#settings;
 
 	get bonjourName() {
-		return this.#settings.name || os.hostname();
+		return this.#settings.name || os.hostname().substring(0,14);
 	}
 
 	get types() {
