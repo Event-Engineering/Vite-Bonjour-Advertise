@@ -20,6 +20,10 @@ class AdvertiseServer {
 		return this.#settings.types || ['http', 'vite'];
 	}
 
+	get events() {
+		return this.#settings.events || {};
+	}
+
 	constructor(settings) {
 		this.#settings = settings || {};
 		this.#bonjour = new Bonjour(this.#settings.bonjour);
@@ -53,13 +57,36 @@ class AdvertiseServer {
 				setTimeout(() => {
 					this.#server.config.logger.info('Advertising', {name: this.bonjourName, type, port});
 				});
-				this.#bonjour.publish({name: this.bonjourName, type, port});
+				let service = this.#bonjour.publish({name: this.bonjourName, type, port});
+
+				['up', 'error', 'anouncing']
+				.forEach((name) => {
+					service.on(name, this.#serviceEvent.bind(this, name, type));
+				});
 			});
 		} else {
 			setTimeout(() => {
 				this.#server.config.logger.warn('Ignoring', {family, address, port});
 			});
 		}
+	}
+
+	#serviceEvent(name, type, response) {
+		let callbacks = this.#settings.events[name];
+
+		if ( ! Array.isArray(callbacks)) {
+			callbacks = [callbacks];
+		}
+
+		callbacks
+		.filter(c => c instanceof Function)
+		.forEach((c) => {
+			try {
+				c(response, type);
+			} catch (error) {
+				this.#server.config.logger.warn('Callback errorer', error);
+			}
+		});
 	}
 }
 
