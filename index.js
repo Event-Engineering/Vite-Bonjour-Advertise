@@ -37,6 +37,11 @@ class AdvertiseServer {
 		this.#server.httpServer.on('listening', () => {
 			this.#advertise(this.#server.httpServer.address());
 		});
+
+		[`exit`, `SIGINT`, `uncaughtException`, `SIGTERM`]
+		.forEach((eventType) => {
+			process.on(eventType, this.#cleanUp.bind(this));
+		});
 	}
 
 	#advertise(addressSet) {
@@ -87,6 +92,11 @@ class AdvertiseServer {
 				this.#server.config.logger.warn('Callback errorer', error);
 			}
 		});
+	}
+
+	#cleanUp() {
+		this.#bonjour.destroy();
+		process.exit();
 	}
 }
 
