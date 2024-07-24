@@ -1,6 +1,6 @@
 {
 	"name": "@eventengineering/vite-bonjour-advertise",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "Advertises the Vite server over Bonjour when host enabled",
 	"main": "index.js",
 	"type": "module",
