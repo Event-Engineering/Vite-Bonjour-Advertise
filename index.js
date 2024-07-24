@@ -9,7 +9,11 @@ class AdvertiseServer {
 	#settings;
 
 	get bonjourName() {
-		return this.#settings.name?.replace(/[^a-z0-9]/gi, '')?.substring(0, 15) || (os.hostname().replace(/[^a-z0-9]/gi, '').substring(0, 10) + Math.floor(Math.random() * 100000));
+		if ( ! this.#settings.name) {
+			this.#settings.name = os.hostname().replace(/[^-a-z0-9]/gi, '').substring(0, 10) + Math.floor(Math.random() * 100000);
+		}
+
+		return this.#settings.name.replace(/[^-a-z0-9]/gi, '').substring(0, 15);
 	}
 
 	get types() {
