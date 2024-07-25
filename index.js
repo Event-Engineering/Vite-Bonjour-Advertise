@@ -40,7 +40,7 @@ class AdvertiseServer {
 
 		[`exit`, `SIGINT`, `uncaughtException`, `SIGTERM`]
 		.forEach((eventType) => {
-			process.on(eventType, this.#cleanUp.bind(this));
+			process.on(eventType, this.#cleanUp.bind(this, eventType));
 		});
 	}
 
@@ -94,7 +94,11 @@ class AdvertiseServer {
 		});
 	}
 
-	#cleanUp() {
+	#cleanUp(eventType, e) {
+		if (eventType === 'uncaughtException' && e) {
+			this.#server.config.logger.error(e);
+		}
+
 		this.#bonjour.destroy();
 		process.exit();
 	}
