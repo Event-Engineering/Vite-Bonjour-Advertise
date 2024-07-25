@@ -77,7 +77,7 @@ class AdvertiseServer {
 	}
 
 	#serviceEvent(name, type, response) {
-		let callbacks = this.#settings.events[name];
+		let callbacks = this.events[name];
 
 		if ( ! Array.isArray(callbacks)) {
 			callbacks = [callbacks];
