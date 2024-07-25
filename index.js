@@ -40,7 +40,7 @@ class AdvertiseServer {
 
 		[`exit`, `SIGINT`, `uncaughtException`, `SIGTERM`]
 		.forEach((eventType) => {
-			process.on(eventType, this.#cleanUp.bind(this));
+			process.on(eventType, this.#cleanUp.bind(this, eventType));
 		});
 	}
 
@@ -77,7 +77,7 @@ class AdvertiseServer {
 	}
 
 	#serviceEvent(name, type, response) {
-		let callbacks = this.#settings.events[name];
+		let callbacks = this.events[name];
 
 		if ( ! Array.isArray(callbacks)) {
 			callbacks = [callbacks];
@@ -94,7 +94,11 @@ class AdvertiseServer {
 		});
 	}
 
-	#cleanUp() {
+	#cleanUp(eventType, e) {
+		if (eventType === 'uncaughtException' && e) {
+			this.#server.config.logger.error(e);
+		}
+
 		this.#bonjour.destroy();
 		process.exit();
 	}
