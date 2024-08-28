@@ -5,8 +5,16 @@ class AdvertiseServer {
 	name = 'advertise-server';
 	#server;
 	#addressSets = [];
-	#bonjour;
+	#_bonjour;
 	#settings;
+
+	get #bonjour() {
+		if ( ! this.#_bonjour) {
+			this.#_bonjour = new Bonjour(this.#settings.bonjour);
+		}
+
+		return this.#_bonjour;
+	}
 
 	get bonjourName() {
 		if ( ! this.#settings.name) {
@@ -26,7 +34,6 @@ class AdvertiseServer {
 
 	constructor(settings) {
 		this.#settings = settings || {};
-		this.#bonjour = new Bonjour(this.#settings.bonjour);
 	}
 
 	configureServer(server, ...args) {
